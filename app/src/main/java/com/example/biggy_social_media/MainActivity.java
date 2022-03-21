@@ -1,3 +1,11 @@
+/*
+To Do-
+Fix Bottom Navigation
+ */
+
+
+
+
 package com.example.biggy_social_media;
 
 import androidx.appcompat.app.AppCompatActivity;
