@@ -14,8 +14,8 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/frameLayoutReplace"
             android:background="@drawable/ic_launcher_background">
-
         </FrameLayout>
 
         <com.google.android.material.bottomappbar.BottomAppBar

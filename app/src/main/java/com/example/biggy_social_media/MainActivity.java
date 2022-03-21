@@ -1,6 +1,6 @@
 /*
 To Do-
-Fix Bottom Navigation
+Fix Bottom Navigation (Replacing the fragment gives out exception)
  */
 
 
@@ -17,10 +17,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.biggy_social_media.Fragment.HomeFragment;
+import com.example.biggy_social_media.Fragment.NotificationFragment;
+import com.example.biggy_social_media.Fragment.ProfileFragment;
+import com.example.biggy_social_media.Fragment.SearchFragment;
 import com.example.biggy_social_media.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
@@ -30,34 +35,36 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        transaction.replace(R.id.frameLayoutReplace, new HomeFragment());
+                        transaction.commit();
+                        return true;
+                    case R.id.search:
+                        transaction.replace(R.id.frameLayoutReplace, new SearchFragment());
+                        transaction.commit();
+                        return true;
+                    case R.id.notifications:
+                        transaction.replace(R.id.frameLayoutReplace, new NotificationFragment());
+                        transaction.commit();
+                        return true;
+                    case R.id.person:
+                        transaction.replace(R.id.frameLayoutReplace, new ProfileFragment());
+                        transaction.commit();
+                        return true;
+                }
+                return false;
+            }});
     }
 
 
-    //Function Name: onOptionsItemSelected()
-    //Parameters: MenuItem item     -   menu item
-    //Description: This function is to implement the logic on menu item selected
-    //Return: boolean true if successful
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        switch (item.getItemId()){
-            case R.id.home:
-                Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.search:
-                Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.notifications:
-                Toast.makeText(this, "notifications", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.person:
-                Toast.makeText(this, "profile", Toast.LENGTH_SHORT).show();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public void testing(View view) {
         Toast.makeText(this, "testingWorkked", Toast.LENGTH_SHORT).show();
