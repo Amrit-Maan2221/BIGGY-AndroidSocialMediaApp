@@ -10,6 +10,7 @@ package com.example.biggy_social_media;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     //Return: boolean true if successful
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
