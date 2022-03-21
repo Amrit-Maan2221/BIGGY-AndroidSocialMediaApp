@@ -10,6 +10,7 @@ package com.example.biggy_social_media;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -23,12 +24,12 @@ import com.example.biggy_social_media.Fragment.NotificationFragment;
 import com.example.biggy_social_media.Fragment.ProfileFragment;
 import com.example.biggy_social_media.Fragment.SearchFragment;
 import com.example.biggy_social_media.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    private Fragment selectorFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,24 +46,23 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 switch (item.getItemId()) {
                     case R.id.home:
-                        transaction.replace(R.id.frameLayoutReplace, new HomeFragment());
-                        transaction.commit();
-                        return true;
+                        selectorFragment = new HomeFragment();
+                        break;
                     case R.id.search:
-                        transaction.replace(R.id.frameLayoutReplace, new SearchFragment());
-                        transaction.commit();
-                        return true;
+                        selectorFragment = new SearchFragment();
+                        break;
                     case R.id.notifications:
-                        transaction.replace(R.id.frameLayoutReplace, new NotificationFragment());
-                        transaction.commit();
-                        return true;
+                        selectorFragment = new NotificationFragment();
+                        break;
                     case R.id.person:
-                        transaction.replace(R.id.frameLayoutReplace, new ProfileFragment());
-                        transaction.commit();
-                        return true;
+                        selectorFragment = new ProfileFragment();
+                        break;
                 }
-                return false;
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayoutReplace , selectorFragment).commit();
+
+                return  true;
             }});
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayoutReplace , new HomeFragment()).commit();
     }
 
 
