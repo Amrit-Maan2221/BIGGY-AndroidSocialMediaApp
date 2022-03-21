@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,10 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void testing(View view) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        Toast.makeText(this, "testingWorkked", Toast.LENGTH_SHORT).show();
-        transaction.replace(R.id.frameLayoutReplace, new AddFragment());
-        transaction.commit();
+    public void postActivity(View view) {
+        Intent intent = new Intent(this, PostActivity.class);
+        startActivity(intent);
     }
 }
