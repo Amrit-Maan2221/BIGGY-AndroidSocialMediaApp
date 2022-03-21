@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.biggy_social_media.Fragment.AddFragment;
 import com.example.biggy_social_media.Fragment.HomeFragment;
 import com.example.biggy_social_media.Fragment.NotificationFragment;
 import com.example.biggy_social_media.Fragment.ProfileFragment;
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void testing(View view) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Toast.makeText(this, "testingWorkked", Toast.LENGTH_SHORT).show();
+        transaction.replace(R.id.frameLayoutReplace, new AddFragment());
+        transaction.commit();
     }
 }
